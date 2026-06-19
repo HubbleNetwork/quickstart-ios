@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# Secrets — never commit
+Secrets.xcconfig
+*.xcconfig.local
+
+# Xcode user-specific state
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# Build output
+build/
+DerivedData/
+*.ipa
+*.dSYM/
+*.dSYM.zip
+
+# Xcode archive/export artifacts
+HubbleGatewaySample */
+DistributionSummary.plist
+ExportOptions.plist
+Packaging.log
+
+# Swift Package Manager (if used in the project)
+.build/
+.swiftpm/xcode/xcuserdata/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+
+# CocoaPods / Carthage (if added later)
+Pods/
+Carthage/Build/
+
+# Fastlane (if added later)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output

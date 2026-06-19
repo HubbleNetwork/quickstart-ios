@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB1100000000000000000001 /* HubbleGatewaySampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000001 /* HubbleGatewaySampleApp.swift */; };
+		BB1100000000000000000002 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000002 /* AppModel.swift */; };
+		BB1100000000000000000003 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000003 /* RootView.swift */; };
+		BB1100000000000000000004 /* PermissionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000004 /* PermissionsSection.swift */; };
+		BB1100000000000000000005 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000005 /* ConfigSection.swift */; };
+		BB1100000000000000000006 /* GatewaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000006 /* GatewaySection.swift */; };
+		BB1100000000000000000007 /* DiagnosticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000007 /* DiagnosticsSection.swift */; };
+		BB1100000000000000000008 /* StatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000008 /* StatusRow.swift */; };
+		BB110000000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA110000000000000000000A /* Assets.xcassets */; };
+		BB110000000000000000000F /* HubbleGatewaySDK in Frameworks */ = {isa = PBXBuildFile; productRef = 3333000000000000000000A1 /* HubbleGatewaySDK */; };
+		BB1100000000000000000010 /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000010 /* DefaultConfig.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0ABEEACD2FE567E200CCC861 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		AA1100000000000000000001 /* HubbleGatewaySampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubbleGatewaySampleApp.swift; sourceTree = "<group>"; };
+		AA1100000000000000000002 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		AA1100000000000000000003 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		AA1100000000000000000004 /* PermissionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsSection.swift; sourceTree = "<group>"; };
+		AA1100000000000000000005 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
+		AA1100000000000000000006 /* GatewaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewaySection.swift; sourceTree = "<group>"; };
+		AA1100000000000000000007 /* DiagnosticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsSection.swift; sourceTree = "<group>"; };
+		AA1100000000000000000008 /* StatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRow.swift; sourceTree = "<group>"; };
+		AA1100000000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA110000000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA110000000000000000000B /* HubbleGatewaySample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubbleGatewaySample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1100000000000000000010 /* DefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD1100000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB110000000000000000000F /* HubbleGatewaySDK in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC1100000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				CC1100000000000000000002 /* HubbleGatewaySample */,
+				CC1100000000000000000003 /* Products */,
+				0ABEEACD2FE567E200CCC861 /* Secrets.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		CC1100000000000000000002 /* HubbleGatewaySample */ = {
+			isa = PBXGroup;
+			children = (
+				AA1100000000000000000001 /* HubbleGatewaySampleApp.swift */,
+				AA1100000000000000000002 /* AppModel.swift */,
+				AA1100000000000000000003 /* RootView.swift */,
+				AA1100000000000000000004 /* PermissionsSection.swift */,
+				AA1100000000000000000005 /* ConfigSection.swift */,
+				AA1100000000000000000006 /* GatewaySection.swift */,
+				AA1100000000000000000007 /* DiagnosticsSection.swift */,
+				AA1100000000000000000008 /* StatusRow.swift */,
+				AA1100000000000000000010 /* DefaultConfig.swift */,
+				AA1100000000000000000009 /* Info.plist */,
+				AA110000000000000000000A /* Assets.xcassets */,
+			);
+			path = HubbleGatewaySample;
+			sourceTree = "<group>";
+		};
+		CC1100000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA110000000000000000000B /* HubbleGatewaySample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EE1100000000000000000001 /* HubbleGatewaySample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2222000000000000000000A1 /* Build configuration list for PBXNativeTarget "HubbleGatewaySample" */;
+			buildPhases = (
+				DD1100000000000000000001 /* Sources */,
+				DD1100000000000000000003 /* Frameworks */,
+				DD1100000000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HubbleGatewaySample;
+			packageProductDependencies = (
+				3333000000000000000000A1 /* HubbleGatewaySDK */,
+			);
+			productName = HubbleGatewaySample;
+			productReference = AA110000000000000000000B /* HubbleGatewaySample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF1100000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					EE1100000000000000000001 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 2222000000000000000000A0 /* Build configuration list for PBXProject "HubbleGatewaySample" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC1100000000000000000001;
+			packageReferences = (
+				3333000000000000000000A0 /* XCLocalSwiftPackageReference "../gateway-sdk" */,
+			);
+			productRefGroup = CC1100000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EE1100000000000000000001 /* HubbleGatewaySample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD1100000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB110000000000000000000A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD1100000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB1100000000000000000001 /* HubbleGatewaySampleApp.swift in Sources */,
+				BB1100000000000000000002 /* AppModel.swift in Sources */,
+				BB1100000000000000000003 /* RootView.swift in Sources */,
+				BB1100000000000000000004 /* PermissionsSection.swift in Sources */,
+				BB1100000000000000000005 /* ConfigSection.swift in Sources */,
+				BB1100000000000000000006 /* GatewaySection.swift in Sources */,
+				BB1100000000000000000007 /* DiagnosticsSection.swift in Sources */,
+				BB1100000000000000000008 /* StatusRow.swift in Sources */,
+				BB1100000000000000000010 /* DefaultConfig.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1111000000000000000000A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ABEEACD2FE567E200CCC861 /* Secrets.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1111000000000000000000A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ABEEACD2FE567E200CCC861 /* Secrets.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1111000000000000000000A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SBY4TF74S2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = HubbleGatewaySample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Gateway;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hubble.gatewaysample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1111000000000000000000A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SBY4TF74S2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = HubbleGatewaySample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Gateway;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hubble.gatewaysample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2222000000000000000000A0 /* Build configuration list for PBXProject "HubbleGatewaySample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1111000000000000000000A0 /* Debug */,
+				1111000000000000000000A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2222000000000000000000A1 /* Build configuration list for PBXNativeTarget "HubbleGatewaySample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1111000000000000000000A2 /* Debug */,
+				1111000000000000000000A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		3333000000000000000000A0 /* XCLocalSwiftPackageReference "../gateway-sdk" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../gateway-sdk";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3333000000000000000000A1 /* HubbleGatewaySDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HubbleGatewaySDK;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FF1100000000000000000001 /* Project object */;
+}
