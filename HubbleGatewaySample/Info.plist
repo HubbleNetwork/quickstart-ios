@@ -2,70 +2,58 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleDevelopmentRegion</key>
-    <string>en</string>
-    <key>CFBundleExecutable</key>
-    <string>$(EXECUTABLE_NAME)</string>
-    <key>CFBundleIdentifier</key>
-    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-    <key>CFBundleInfoDictionaryVersion</key>
-    <string>6.0</string>
-    <key>CFBundleName</key>
-    <string>$(PRODUCT_NAME)</string>
-    <key>CFBundlePackageType</key>
-    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>LSRequiresIPhoneOS</key>
-    <true/>
-
-    <key>HubbleSDKKey</key>
-    <string>$(HUBBLE_SDK_KEY)</string>
-
-    <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>Hubble Gateway scans for nearby beacons in the background to relay packets to the Hubble Network.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Locations are paired with discovered beacons before upload.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Background scanning needs Always permission to pair beacons with locations while the app is suspended.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Background scanning needs Always permission to pair beacons with locations while the app is suspended.</string>
-    <key>NSMotionUsageDescription</key>
-    <string>Motion data is used to detect whether the device is moving or stationary so scanning and upload cadence can adapt accordingly.</string>
-
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>bluetooth-central</string>
-        <string>location</string>
-        <string>fetch</string>
-        <string>processing</string>
-    </array>
-
-    <key>BGTaskSchedulerPermittedIdentifiers</key>
-    <array>
-        <string>com.hubble.gateway.refresh</string>
-        <string>com.hubble.gateway.processing</string>
-    </array>
-
-    <key>UILaunchScreen</key>
-    <dict/>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-        <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationPortraitUpsideDown</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UIApplicationSceneManifest</key>
-    <dict>
-        <key>UIApplicationSupportsMultipleScenes</key>
-        <false/>
-    </dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.hubble.gateway.refresh</string>
+		<string>com.hubble.gateway.processing</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.0.1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>HubbleSDKKey</key>
+	<string>$(HUBBLE_SDK_KEY)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Hubble Gateway scans for nearby beacons in the background to relay packets to the Hubble Network.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Background scanning needs Always permission to pair beacons with locations while the app is suspended.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Background scanning needs Always permission to pair beacons with locations while the app is suspended.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Locations are paired with discovered beacons before upload.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion data is used to detect whether the device is moving or stationary so scanning and upload cadence can adapt accordingly.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>location</string>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>
