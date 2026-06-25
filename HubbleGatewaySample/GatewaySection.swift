@@ -29,6 +29,19 @@ struct GatewaySection: View {
             Button("Register now") { model.registerNow() }
                 .buttonStyle(.bordered)
         }
+
+        Toggle(isOn: Binding(
+            get: { model.isActiveScanning },
+            set: { model.setActiveScanning($0) }
+        )) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Active mode")
+                Text("Force fast cadence (60 s upload, 30 s dedup, 10 m GPS) regardless of detected motion. Mirrors Android `startActiveScanning`.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .disabled(!model.isScanning)
     }
 
     @ViewBuilder

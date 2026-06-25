@@ -15,6 +15,7 @@ final class AppModel {
     // SDK state mirrored for the UI
     var initializationState: InitializationState = .notStarted
     var isScanning: Bool = false
+    var isActiveScanning: Bool = false
     var gatewayId: String?
     var lastDiagnostics: UploadDiagnostics?
     var lastError: String?
@@ -84,6 +85,15 @@ final class AppModel {
         refresh()
     }
 
+    func setActiveScanning(_ enabled: Bool) {
+        if enabled {
+            HubbleGatewaySDK.shared.startActiveScanning()
+        } else {
+            HubbleGatewaySDK.shared.stopActiveScanning()
+        }
+        refresh()
+    }
+
     // MARK: - Permissions
 
     func openSettings() {
@@ -108,6 +118,7 @@ final class AppModel {
         permissions = GatewayPermissions.currentStatus()
         initializationState = HubbleGatewaySDK.shared.initializationState
         isScanning = HubbleGatewaySDK.shared.isScanning
+        isActiveScanning = HubbleGatewaySDK.shared.isActiveScanningOverride
         gatewayId = HubbleGatewaySDK.shared.gatewayId
 
         Task {

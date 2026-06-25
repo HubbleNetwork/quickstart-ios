@@ -6,6 +6,7 @@
 	<array>
 		<string>com.hubble.gateway.refresh</string>
 		<string>com.hubble.gateway.processing</string>
+		<string>com.hubble.gateway.continued</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -20,9 +21,9 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.1</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>HubbleSDKKey</key>
 	<string>$(HUBBLE_SDK_KEY)</string>
 	<key>LSRequiresIPhoneOS</key>
