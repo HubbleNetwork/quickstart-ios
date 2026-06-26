@@ -20,15 +20,11 @@ struct GatewaySection: View {
 
         gatewayIdRow
 
-        HStack(spacing: 12) {
-            Button(model.isScanning ? "Stop scanning" : "Start") {
-                model.isScanning ? model.stop() : model.start()
-            }
-            .buttonStyle(.borderedProminent)
-
-            Button("Register now") { model.registerNow() }
-                .buttonStyle(.bordered)
+        Button(model.isScanning ? "Stop" : "Start") {
+            model.isScanning ? model.stop() : model.start()
         }
+        .buttonStyle(.borderedProminent)
+        .frame(maxWidth: .infinity)
 
         Toggle(isOn: Binding(
             get: { model.isActiveScanning },
@@ -36,7 +32,7 @@ struct GatewaySection: View {
         )) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Active mode")
-                Text("Force fast cadence (60 s upload, 30 s dedup, 10 m GPS) regardless of detected motion. Mirrors Android `startActiveScanning`.")
+                Text("Forces fast cadence (60 s upload, 30 s dedup, 10 m GPS) regardless of detected motion. ⚠️ Higher battery use — leave OFF unless you need maximum freshness.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }

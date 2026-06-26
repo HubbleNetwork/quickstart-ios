@@ -18,6 +18,8 @@
 		BB110000000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA110000000000000000000A /* Assets.xcassets */; };
 		BB110000000000000000000F /* HubbleGatewaySDK in Frameworks */ = {isa = PBXBuildFile; productRef = 3333000000000000000000A1 /* HubbleGatewaySDK */; };
 		BB1100000000000000000010 /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000010 /* DefaultConfig.swift */; };
+		BB1100000000000000000011 /* BleDevicesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000011 /* BleDevicesSection.swift */; };
+		BB1100000000000000000012 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000012 /* LocationSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		AA110000000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA110000000000000000000B /* HubbleGatewaySample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HubbleGatewaySample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA1100000000000000000010 /* DefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
+		AA1100000000000000000011 /* BleDevicesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDevicesSection.swift; sourceTree = "<group>"; };
+		AA1100000000000000000012 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				AA1100000000000000000006 /* GatewaySection.swift */,
 				AA1100000000000000000007 /* DiagnosticsSection.swift */,
 				AA1100000000000000000008 /* StatusRow.swift */,
+				AA1100000000000000000011 /* BleDevicesSection.swift */,
+				AA1100000000000000000012 /* LocationSection.swift */,
 				AA1100000000000000000010 /* DefaultConfig.swift */,
 				AA1100000000000000000009 /* Info.plist */,
 				AA110000000000000000000A /* Assets.xcassets */,
@@ -166,6 +172,8 @@
 				BB1100000000000000000006 /* GatewaySection.swift in Sources */,
 				BB1100000000000000000007 /* DiagnosticsSection.swift in Sources */,
 				BB1100000000000000000008 /* StatusRow.swift in Sources */,
+				BB1100000000000000000011 /* BleDevicesSection.swift in Sources */,
+				BB1100000000000000000012 /* LocationSection.swift in Sources */,
 				BB1100000000000000000010 /* DefaultConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

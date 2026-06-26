@@ -6,15 +6,9 @@ struct DiagnosticsSection: View {
 
     var body: some View {
         if let d = diagnostics {
-            LabeledContent("Pending", value: "\(d.pendingPackets)")
-            LabeledContent("Uploading", value: "\(d.uploadingPackets)")
-            LabeledContent("Failed", value: "\(d.failedPackets)")
-            LabeledContent("Last batch", value: "\(d.lastSuccessfulBatchSize) packets")
-            LabeledContent("Last upload") {
-                Text(d.lastUploadAt.map { Self.format($0) } ?? "—")
-                    .foregroundStyle(.secondary)
-            }
-            LabeledContent("Bytes / 24h", value: ByteCountFormatter.string(fromByteCount: d.bytesUploadedLast24h, countStyle: .file))
+            LabeledContent("Uploaded last 24 h", value: Self.formatKB(d.bytesUploadedLast24h))
+            LabeledContent("Last packets uploaded", value: Self.formatTime(d.lastUploadAt))
+            LabeledContent("Last logs uploaded", value: Self.formatTime(d.lastLogsUploadAt))
 
             if let err = d.lastUploadError {
                 Text(err).font(.footnote).foregroundStyle(.red)
@@ -26,8 +20,19 @@ struct DiagnosticsSection: View {
         }
     }
 
-    private static func format(_ date: Date) -> String {
-        let f = RelativeDateTimeFormatter()
-        return f.localizedString(for: date, relativeTo: .now)
+    private static func formatKB(_ bytes: Int64) -> String {
+        let kb = Double(bytes) / 1024.0
+        return String(format: "%.1f kB", kb)
+    }
+
+    private static let timeFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "HH:mm:ss"
+        return f
+    }()
+
+    private static func formatTime(_ date: Date?) -> String {
+        guard let date else { return "—" }
+        return timeFormatter.string(from: date)
     }
 }
