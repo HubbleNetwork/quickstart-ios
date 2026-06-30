@@ -37,7 +37,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Locations are paired with discovered beacons before upload.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Motion data is used to detect whether the device is moving or stationary so scanning and upload cadence can adapt accordingly.</string>
+	<string>Motion is used to pause GPS and reduce uploads when your device is stationary, which lowers battery consumption.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
