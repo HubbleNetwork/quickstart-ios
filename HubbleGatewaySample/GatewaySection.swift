@@ -9,25 +9,25 @@ struct GatewaySection: View {
     var body: some View {
         StatusRow(
             label: "State",
-            value: model.initializationState.rawValue,
-            tone: tone(for: model.initializationState)
+            value: model.controller.initializationState.rawValue,
+            tone: tone(for: model.controller.initializationState)
         )
         StatusRow(
             label: "Scanning",
-            value: model.isScanning ? "yes" : "no",
-            tone: model.isScanning ? .ok : .neutral
+            value: model.controller.isScanning ? "yes" : "no",
+            tone: model.controller.isScanning ? .ok : .neutral
         )
 
         gatewayIdRow
 
-        Button(model.isScanning ? "Stop" : "Start") {
-            model.isScanning ? model.stop() : model.start()
+        Button(model.controller.isScanning ? "Stop" : "Start") {
+            model.controller.isScanning ? model.stop() : model.start()
         }
         .buttonStyle(.borderedProminent)
         .frame(maxWidth: .infinity)
 
         Toggle(isOn: Binding(
-            get: { model.isActiveScanning },
+            get: { model.controller.isActiveScanning },
             set: { model.setActiveScanning($0) }
         )) {
             VStack(alignment: .leading, spacing: 2) {
@@ -37,12 +37,12 @@ struct GatewaySection: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .disabled(!model.isScanning)
+        .disabled(!model.controller.isScanning)
     }
 
     @ViewBuilder
     private var gatewayIdRow: some View {
-        if let id = model.gatewayId {
+        if let id = model.controller.gatewayId {
             Button {
                 UIPasteboard.general.string = id
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()

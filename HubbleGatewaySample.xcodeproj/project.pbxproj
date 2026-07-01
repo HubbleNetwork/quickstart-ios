@@ -20,6 +20,7 @@
 		BB1100000000000000000010 /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000010 /* DefaultConfig.swift */; };
 		BB1100000000000000000011 /* BleDevicesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000011 /* BleDevicesSection.swift */; };
 		BB1100000000000000000012 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000012 /* LocationSection.swift */; };
+		BB1100000000000000000013 /* GatewayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000013 /* GatewayController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		AA1100000000000000000010 /* DefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
 		AA1100000000000000000011 /* BleDevicesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDevicesSection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000012 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
+		AA1100000000000000000013 /* GatewayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1100000000000000000001 /* HubbleGatewaySampleApp.swift */,
+				AA1100000000000000000013 /* GatewayController.swift */,
 				AA1100000000000000000002 /* AppModel.swift */,
 				AA1100000000000000000003 /* RootView.swift */,
 				AA1100000000000000000004 /* PermissionsSection.swift */,
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB1100000000000000000001 /* HubbleGatewaySampleApp.swift in Sources */,
+				BB1100000000000000000013 /* GatewayController.swift in Sources */,
 				BB1100000000000000000002 /* AppModel.swift in Sources */,
 				BB1100000000000000000003 /* RootView.swift in Sources */,
 				BB1100000000000000000004 /* PermissionsSection.swift in Sources */,
@@ -304,7 +308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = SBY4TF74S2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -331,7 +335,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = SBY4TF74S2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;

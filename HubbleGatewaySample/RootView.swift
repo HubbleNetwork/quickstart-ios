@@ -9,7 +9,7 @@ struct RootView: View {
         NavigationStack {
             List {
                 Section("Permissions") {
-                    PermissionsSection(model: model)
+                    PermissionsSection(permissions: model.controller.permissions)
                 }
 
                 Section("Configuration") {
@@ -21,15 +21,18 @@ struct RootView: View {
                 }
 
                 Section("Upload") {
-                    DiagnosticsSection(diagnostics: model.lastDiagnostics)
+                    DiagnosticsSection(diagnostics: model.controller.lastDiagnostics)
                 }
 
                 Section("Location") {
-                    LocationSection(fix: model.lastLocation, diagnostics: model.lastDiagnostics)
+                    LocationSection(
+                        fix: model.controller.lastLocation,
+                        diagnostics: model.controller.lastDiagnostics
+                    )
                 }
 
                 Section("Devices in range") {
-                    BleDevicesSection(devices: model.discoveredDevices)
+                    BleDevicesSection(devices: model.controller.discoveredDevices)
                 }
 
                 if let error = model.lastError {
@@ -45,7 +48,6 @@ struct RootView: View {
                 }
             }
             .navigationTitle("Hubble Gateway")
-            .onAppear { model.refresh() }
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active { model.onSceneBecameActive() }
             }
@@ -53,8 +55,10 @@ struct RootView: View {
                 "Allow background access",
                 isPresented: $model.showAlwaysExplainerAlert,
                 actions: {
-                    Button("Open Settings") { model.confirmAlwaysExplainer() }
-                    Button("Not now", role: .cancel) { model.showAlwaysExplainerAlert = false }
+                    Button("Open Settings") { model.resolveAlwaysExplainer(openSettings: true) }
+                    Button("Not now", role: .cancel) {
+                        model.resolveAlwaysExplainer(openSettings: false)
+                    }
                 },
                 message: {
                     Text("The gateway relays Bluetooth beacons even when the app is in the background or your screen is locked. iOS needs Location set to “Always” for that to work. Tap Open Settings → Location → Always.")
