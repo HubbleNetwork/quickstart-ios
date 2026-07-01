@@ -41,6 +41,12 @@ final class GatewayController {
     private var pollTask: Task<Void, Never>?
     private var foregroundObserver: NSObjectProtocol?
     private var scanCollector: ScanCollector?
+    /// One `AsyncStream.Continuation` per active subscriber to
+    /// ``discoveries()``. Callers get an independent stream each — the
+    /// SDK's `ScanListener` is a single-fan-in source, so this multiplex
+    /// gives multiple SwiftUI views / analytics tasks independent views
+    /// of the same event feed without stealing from each other.
+    private var discoveryContinuations: [UUID: AsyncStream<GatewayScanResult>.Continuation] = [:]
 
     init() {
         installLifecycleObservers()
@@ -129,6 +135,36 @@ final class GatewayController {
         return HubbleGatewaySDK.shared.isBluetoothPoweredOn
     }
 
+    // MARK: - Async scan feed
+
+    /// Returns a fresh `AsyncStream<GatewayScanResult>` that emits every
+    /// raw scan sighting delivered by the SDK's `ScanListener`. Each
+    /// call yields an independent stream — safe to call from multiple
+    /// SwiftUI views, analytics tasks, or background pipelines. Buffers
+    /// the newest 200 events to bound memory if the consumer is slow.
+    ///
+    /// Cancelling the consuming `Task` (or letting the stream go out of
+    /// scope) automatically detaches its continuation.
+    ///
+    /// ```swift
+    /// Task {
+    ///     for await result in controller.discoveries() {
+    ///         analytics.track(result)
+    ///     }
+    /// }
+    /// ```
+    func discoveries() -> AsyncStream<GatewayScanResult> {
+        let id = UUID()
+        return AsyncStream(bufferingPolicy: .bufferingNewest(200)) { continuation in
+            self.discoveryContinuations[id] = continuation
+            continuation.onTermination = { [weak self] _ in
+                Task { @MainActor in
+                    self?.discoveryContinuations.removeValue(forKey: id)
+                }
+            }
+        }
+    }
+
     // MARK: - Scan listener bridge
 
     private func attachScanCollector() {
@@ -143,6 +179,13 @@ final class GatewayController {
     }
 
     private func ingest(_ result: GatewayScanResult) {
+        // Fan out to every active AsyncStream subscriber. Yields are
+        // cheap; the bufferingPolicy on each stream drops oldest events
+        // if a consumer is slow.
+        for continuation in discoveryContinuations.values {
+            continuation.yield(result)
+        }
+
         let id = result.peripheralIdentifier
         if var existing = deviceIndex[id] {
             existing.lastRSSI = result.rssi
