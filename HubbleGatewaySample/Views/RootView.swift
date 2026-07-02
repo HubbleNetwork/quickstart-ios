@@ -32,7 +32,10 @@ struct RootView: View {
                 }
 
                 Section("Devices in range") {
-                    BleDevicesSection(devices: model.controller.discoveredDevices)
+                    BleDevicesSection(
+                        devices: model.controller.discoveredDevices,
+                        onClear: { model.controller.clearDiscoveredDevices() }
+                    )
                 }
 
                 if let error = model.lastError {

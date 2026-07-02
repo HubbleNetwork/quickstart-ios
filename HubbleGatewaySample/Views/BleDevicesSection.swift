@@ -2,10 +2,13 @@ import SwiftUI
 import HubbleGatewaySDK
 
 /// Live list of BLE peripherals the SDK has surfaced via `ScanListener`.
-/// One row per peripheral; updated on every sighting (rolling RSSI, last
-/// seen). Mirror of the Android sample app's device list.
+/// One row per peripheral; updated on every sighting (rolling RSSI,
+/// last seen). The "Clear list" button empties the local list only —
+/// the SDK's persistent scan buffer is untouched, and the next sighting
+/// repopulates the list.
 struct BleDevicesSection: View {
     let devices: [DiscoveredDevice]
+    let onClear: () -> Void
 
     var body: some View {
         if devices.isEmpty {
@@ -15,6 +18,9 @@ struct BleDevicesSection: View {
         } else {
             ForEach(devices) { device in
                 DeviceRow(device: device)
+            }
+            Button(role: .destructive, action: onClear) {
+                Label("Clear list", systemImage: "trash")
             }
         }
     }

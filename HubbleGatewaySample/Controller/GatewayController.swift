@@ -96,6 +96,15 @@ final class GatewayController {
         refresh()
     }
 
+    /// Empties the local ``discoveredDevices`` list without touching the
+    /// SDK's persistent scan buffer, tokens, or config. Purely a UI
+    /// affordance — the next sighting the SDK ships to `ScanListener`
+    /// repopulates the list.
+    func clearDiscoveredDevices() {
+        deviceIndex = [:]
+        discoveredDevices = []
+    }
+
     func registerNow() async throws {
         try await HubbleGatewaySDK.shared.registerIfNeeded()
         refresh()
