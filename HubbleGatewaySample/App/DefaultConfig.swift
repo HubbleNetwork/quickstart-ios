@@ -18,6 +18,4 @@ enum DefaultConfig {
         }
         return value
     }()
-
-    static let apiBaseURLString = "https://gw-api.hubble.com"
 }

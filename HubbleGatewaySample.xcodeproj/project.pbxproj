@@ -11,7 +11,6 @@
 		BB1100000000000000000002 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000002 /* AppModel.swift */; };
 		BB1100000000000000000003 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000003 /* RootView.swift */; };
 		BB1100000000000000000004 /* PermissionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000004 /* PermissionsSection.swift */; };
-		BB1100000000000000000005 /* ConfigSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000005 /* ConfigSection.swift */; };
 		BB1100000000000000000006 /* GatewaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000006 /* GatewaySection.swift */; };
 		BB1100000000000000000007 /* DiagnosticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000007 /* DiagnosticsSection.swift */; };
 		BB1100000000000000000008 /* StatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000008 /* StatusRow.swift */; };
@@ -30,7 +29,6 @@
 		AA1100000000000000000002 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		AA1100000000000000000003 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		AA1100000000000000000004 /* PermissionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsSection.swift; sourceTree = "<group>"; };
-		AA1100000000000000000005 /* ConfigSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000006 /* GatewaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewaySection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000007 /* DiagnosticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsSection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000008 /* StatusRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRow.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			children = (
 				AA1100000000000000000003 /* RootView.swift */,
 				AA1100000000000000000004 /* PermissionsSection.swift */,
-				AA1100000000000000000005 /* ConfigSection.swift */,
 				AA1100000000000000000006 /* GatewaySection.swift */,
 				AA1100000000000000000007 /* DiagnosticsSection.swift */,
 				AA1100000000000000000008 /* StatusRow.swift */,
@@ -201,7 +198,6 @@
 				BB1100000000000000000020 /* DiscoveredDevice.swift in Sources */,
 				BB1100000000000000000003 /* RootView.swift in Sources */,
 				BB1100000000000000000004 /* PermissionsSection.swift in Sources */,
-				BB1100000000000000000005 /* ConfigSection.swift in Sources */,
 				BB1100000000000000000006 /* GatewaySection.swift in Sources */,
 				BB1100000000000000000007 /* DiagnosticsSection.swift in Sources */,
 				BB1100000000000000000008 /* StatusRow.swift in Sources */,

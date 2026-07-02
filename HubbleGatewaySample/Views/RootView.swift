@@ -12,10 +12,6 @@ struct RootView: View {
                     PermissionsSection(permissions: model.controller.permissions)
                 }
 
-                Section("Configuration") {
-                    ConfigSection(model: model)
-                }
-
                 Section("Gateway") {
                     GatewaySection(model: model)
                 }

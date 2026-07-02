@@ -4,17 +4,17 @@ import HubbleGatewaySDK
 import UIKit
 
 /// Sample-app UI-flow orchestration. Owns *only* state the sample's
-/// SwiftUI views care about (alert bindings, text-field input, surfaced
-/// errors). All SDK interaction goes through ``GatewayController``.
+/// SwiftUI views care about (alert bindings, surfaced errors). All SDK
+/// interaction goes through ``GatewayController``.
 ///
 /// The single Start flow:
-/// 1. Resolve the API URL from the text field, surface input errors.
-/// 2. Configure the SDK via the controller.
-/// 3. Hand off to ``GatewayPermissions/request(presentingAlwaysExplainer:_:_:_:)``
+/// 1. Configure the SDK via the controller (sdkKey only — API base URL
+///    is baked into the SDK at build time).
+/// 2. Hand off to ``GatewayPermissions/request(presentingAlwaysExplainer:_:_:_:)``
 ///    for the BT → WhenInUse → Always escalation. The explainer closure
 ///    flips `showAlwaysExplainerAlert` so RootView's `.alert(...)` can
 ///    present the in-app rationale, and waits for the user to dismiss it.
-/// 4. Once permissions are usable, kick off `startScanning()`.
+/// 3. Once permissions are usable, kick off `startScanning()`.
 @MainActor
 @Observable
 final class AppModel {
@@ -25,26 +25,11 @@ final class AppModel {
     var showAlwaysExplainerAlert: Bool = false
     var startBlocker: String?
     var lastError: String?
-    var apiBaseURLString: String {
-        didSet { UserDefaults.standard.set(apiBaseURLString, forKey: "demo.apiBase") }
-    }
 
     /// Continuation resumed when the user dismisses the Always-explainer
     /// alert. Lives here (not in the controller) because dismissal is a
     /// UI event, not an SDK event.
     private var alwaysExplainerContinuation: CheckedContinuation<Bool, Never>?
-
-    init() {
-        // Migrate away from a deprecated default that older builds may
-        // have persisted into UserDefaults.
-        let legacyDefaults: Set<String> = ["https://api.hubblenetwork.com"]
-        if let stored = UserDefaults.standard.string(forKey: "demo.apiBase"),
-           legacyDefaults.contains(stored) {
-            UserDefaults.standard.removeObject(forKey: "demo.apiBase")
-        }
-        self.apiBaseURLString = UserDefaults.standard.string(forKey: "demo.apiBase")
-            ?? DefaultConfig.apiBaseURLString
-    }
 
     // MARK: - Start flow
 
@@ -59,15 +44,8 @@ final class AppModel {
         controller.refresh()
         if controller.isScanning { return }
 
-        guard let url = URL(string: apiBaseURLString) else {
-            lastError = "API URL is invalid"
-            return
-        }
-
         do {
-            try controller.configure(
-                HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey, apiBaseURL: url)
-            )
+            try controller.configure(HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey))
             lastError = nil
         } catch {
             lastError = String(describing: error)
