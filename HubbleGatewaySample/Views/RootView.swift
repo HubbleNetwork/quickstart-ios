@@ -45,6 +45,17 @@ struct RootView: View {
                 Section {
                     Button("Delete all data", role: .destructive) { model.deleteAll() }
                 }
+
+                Section {
+                    HStack {
+                        Spacer()
+                        Text(Self.buildFooter)
+                            .font(.footnote)
+                            .foregroundStyle(.tertiary)
+                        Spacer()
+                    }
+                    .listRowBackground(Color.clear)
+                }
             }
             .navigationTitle("Hubble Gateway")
             .onChange(of: scenePhase) { _, newPhase in
@@ -78,4 +89,14 @@ struct RootView: View {
             }
         }
     }
+
+    /// "v0.1.8 (8)" — reads `CFBundleShortVersionString` +
+    /// `CFBundleVersion` from `Info.plist`, populated at build time
+    /// from `MARKETING_VERSION` / `CURRENT_PROJECT_VERSION`.
+    private static let buildFooter: String = {
+        let info = Bundle.main.infoDictionary ?? [:]
+        let version = (info["CFBundleShortVersionString"] as? String) ?? "?"
+        let build = (info["CFBundleVersion"] as? String) ?? "?"
+        return "v\(version) (\(build))"
+    }()
 }
