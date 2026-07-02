@@ -1,4 +1,4 @@
-# HubbleGatewaySample
+# Hubble Gateway SDK - iOS Quickstart
 
 Reference iOS app that consumes [`gateway-sdk`](../gateway-sdk). Demonstrates
 the end-to-end integration path — permission flow, background-task
