@@ -21,6 +21,7 @@
 		BB1100000000000000000011 /* BleDevicesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000011 /* BleDevicesSection.swift */; };
 		BB1100000000000000000012 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000012 /* LocationSection.swift */; };
 		BB1100000000000000000013 /* GatewayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000013 /* GatewayController.swift */; };
+		BB1100000000000000000020 /* DiscoveredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000020 /* DiscoveredDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		AA1100000000000000000011 /* BleDevicesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleDevicesSection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000012 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000013 /* GatewayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayController.swift; sourceTree = "<group>"; };
+		AA1100000000000000000020 /* DiscoveredDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,18 +68,9 @@
 		CC1100000000000000000002 /* HubbleGatewaySample */ = {
 			isa = PBXGroup;
 			children = (
-				AA1100000000000000000001 /* HubbleGatewaySampleApp.swift */,
-				AA1100000000000000000013 /* GatewayController.swift */,
-				AA1100000000000000000002 /* AppModel.swift */,
-				AA1100000000000000000003 /* RootView.swift */,
-				AA1100000000000000000004 /* PermissionsSection.swift */,
-				AA1100000000000000000005 /* ConfigSection.swift */,
-				AA1100000000000000000006 /* GatewaySection.swift */,
-				AA1100000000000000000007 /* DiagnosticsSection.swift */,
-				AA1100000000000000000008 /* StatusRow.swift */,
-				AA1100000000000000000011 /* BleDevicesSection.swift */,
-				AA1100000000000000000012 /* LocationSection.swift */,
-				AA1100000000000000000010 /* DefaultConfig.swift */,
+				CC1100000000000000000010 /* App */,
+				CC1100000000000000000011 /* Controller */,
+				CC1100000000000000000012 /* Views */,
 				AA1100000000000000000009 /* Info.plist */,
 				AA110000000000000000000A /* Assets.xcassets */,
 			);
@@ -90,6 +83,40 @@
 				AA110000000000000000000B /* HubbleGatewaySample.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CC1100000000000000000010 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA1100000000000000000001 /* HubbleGatewaySampleApp.swift */,
+				AA1100000000000000000010 /* DefaultConfig.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CC1100000000000000000011 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AA1100000000000000000002 /* AppModel.swift */,
+				AA1100000000000000000013 /* GatewayController.swift */,
+				AA1100000000000000000020 /* DiscoveredDevice.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CC1100000000000000000012 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA1100000000000000000003 /* RootView.swift */,
+				AA1100000000000000000004 /* PermissionsSection.swift */,
+				AA1100000000000000000005 /* ConfigSection.swift */,
+				AA1100000000000000000006 /* GatewaySection.swift */,
+				AA1100000000000000000007 /* DiagnosticsSection.swift */,
+				AA1100000000000000000008 /* StatusRow.swift */,
+				AA1100000000000000000011 /* BleDevicesSection.swift */,
+				AA1100000000000000000012 /* LocationSection.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,8 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB1100000000000000000001 /* HubbleGatewaySampleApp.swift in Sources */,
-				BB1100000000000000000013 /* GatewayController.swift in Sources */,
+				BB1100000000000000000010 /* DefaultConfig.swift in Sources */,
 				BB1100000000000000000002 /* AppModel.swift in Sources */,
+				BB1100000000000000000013 /* GatewayController.swift in Sources */,
+				BB1100000000000000000020 /* DiscoveredDevice.swift in Sources */,
 				BB1100000000000000000003 /* RootView.swift in Sources */,
 				BB1100000000000000000004 /* PermissionsSection.swift in Sources */,
 				BB1100000000000000000005 /* ConfigSection.swift in Sources */,
@@ -178,7 +207,6 @@
 				BB1100000000000000000008 /* StatusRow.swift in Sources */,
 				BB1100000000000000000011 /* BleDevicesSection.swift in Sources */,
 				BB1100000000000000000012 /* LocationSection.swift in Sources */,
-				BB1100000000000000000010 /* DefaultConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
