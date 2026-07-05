@@ -16,7 +16,13 @@ struct HubbleGatewaySampleApp: App {
         #endif
 
         // MUST run before launch finishes — registers BG task handlers.
-        HubbleGatewaySDK.registerBackgroundTasks()
+        // The configProvider makes the gateway survive process death: when
+        // iOS relaunches the app in the background (BGTask fire, BLE
+        // restoration) and scanning was active before the kill, the SDK
+        // auto-runs start(config:) + startScanning() from this closure.
+        HubbleGatewaySDK.registerBackgroundTasks {
+            HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey)
+        }
     }
 
     var body: some Scene {
