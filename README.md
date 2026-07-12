@@ -34,6 +34,19 @@ cp Secrets.template.xcconfig Secrets.xcconfig
 values raise a `fatalError` on first launch so the misconfiguration is
 loud.
 
+> **Security note — don't copy this pattern into a production app.**
+> The xcconfig keeps the key out of *git*, but it still ends up in the
+> shipped binary (`Info.plist`), where it is trivially extractable from
+> any App Store build. That's acceptable for a sample; for production,
+> treat anything bundled with the app as public. Prefer fetching the
+> key from your own backend after your own user authentication and
+> passing it to `start(config:)` at runtime — the SDK itself never
+> persists the key and only uses it once, at gateway registration
+> (all subsequent traffic runs on short-lived tokens the SDK stores in
+> the Keychain). If you cache the fetched key for background
+> relaunches (`registerBackgroundTasks(configProvider:)`), put it in
+> your app's Keychain, not in a file or `UserDefaults`.
+
 ## Run
 
 ```bash
@@ -48,12 +61,18 @@ Then in Xcode:
 2. **Run** (⌘R).
 3. Tap **Start** on the Gateway section. The app will:
    1. Request Bluetooth authorization (system prompt).
-   2. Wait for the BLE adapter to power on.
-   3. Request Location `WhenInUse` (system prompt).
-   4. Present an in-app alert explaining why the SDK needs `Always`;
+   2. Request Location `WhenInUse` (system prompt).
+   3. Present an in-app alert explaining why the SDK needs `Always`;
       tapping **Open Settings** opens iOS Settings for this app so you
       can escalate.
-   5. Begin scanning once permissions are usable.
+   4. Request Motion & Fitness (system prompt; optional — denying it
+      just degrades motion detection to a location-speed heuristic).
+   5. Start the SDK and call `startScanning()` — the returned
+      `ScanStartResult` reports anything still missing, which the app
+      surfaces as a blocker alert. The SDK itself never presents a
+      permission prompt.
+   6. Wait for the BLE adapter to power on (a radio-off hint, distinct
+      from permissions).
 
 The local `HubbleGatewaySDK` SwiftPM package is referenced at
 `../gateway-sdk`, so any SDK edit is picked up by the next sample
@@ -65,7 +84,8 @@ build without republishing.
 |---------|-------|
 | Runtime Info.plist preflight (`validateIntegration()`) | `App/HubbleGatewaySampleApp.swift` — debug-only assertion |
 | Register `BGTaskScheduler` handlers before launch completes | `App/HubbleGatewaySampleApp.swift` |
-| Async permission escalation (`GatewayPermissions.request(...)`) with a custom in-app explainer | `Controller/AppModel.swift` — `runStart()` + `presentAlwaysExplainerAndAwait()` |
+| Async permission escalation (`GatewayPermissions.request(...)`) with a custom in-app explainer — the SDK never prompts on its own | `Controller/AppModel.swift` — `runStart()` + `presentAlwaysExplainerAndAwait()` |
+| Consuming `ScanStartResult` (missing-permission feedback from `startScanning()`) | `Controller/AppModel.swift` — `blockerMessage(for:)` |
 | SDK state mirror as an `@Observable` wrapper | `Controller/GatewayController.swift` |
 | Live BLE device list from `ScanListener` callbacks + dedup by peripheral | `Controller/GatewayController.swift` + `Views/BleDevicesSection.swift` |
 | Reactive `AsyncStream<GatewayScanResult>` feed for multi-consumer subscribers | `GatewayController.discoveries()` |
@@ -114,7 +134,9 @@ no view state, no alert bindings. What it gives you:
   `[DiscoveredDevice]` list and (b) any number of independent
   `AsyncStream<GatewayScanResult>` subscribers.
 - Wait helpers (`waitForBluetoothPoweredOn`) that let start-flow
-  callers block on adapter readiness before firing permission prompts.
+  callers surface a "radio is off" hint after scanning starts (the
+  SDK's central is only created once Bluetooth permission is
+  determined, so call it after the permission flow).
 
 `AppModel.swift` is intentionally **not** meant to be copied — it's
 the sample's UI-flow orchestration (alert bindings, error surfacing,

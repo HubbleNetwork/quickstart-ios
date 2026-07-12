@@ -70,9 +70,13 @@ final class GatewayController {
         refresh()
     }
 
-    func startScanning() {
-        HubbleGatewaySDK.shared.startScanning()
+    /// Returns the SDK's ``ScanStartResult`` so flow callers can surface
+    /// missing permissions — the SDK reports them instead of prompting.
+    @discardableResult
+    func startScanning() -> ScanStartResult {
+        let result = HubbleGatewaySDK.shared.startScanning()
         refresh()
+        return result
     }
 
     func stopScanning() {
@@ -131,9 +135,10 @@ final class GatewayController {
     // MARK: - Wait helpers for start-flow callers
 
     /// Polls `isBluetoothPoweredOn` until it flips true or `timeout`
-    /// elapses. `CBCentralManager.state` is only readable after the SDK
-    /// spins one up, so this lets callers wait for the radio to be
-    /// usable before starting the scan.
+    /// elapses. The SDK defers its `CBCentralManager` until Bluetooth
+    /// permission is determined (it never triggers the prompt itself),
+    /// so call this only *after* the permission flow + `startScanning()`
+    /// — before that the property is `false` by construction.
     func waitForBluetoothPoweredOn(timeout: TimeInterval = 8) async -> Bool {
         let stepMs: UInt64 = 100
         let maxIterations = Int(timeout * 1000) / Int(stepMs)

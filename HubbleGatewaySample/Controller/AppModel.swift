@@ -7,14 +7,16 @@ import UIKit
 /// SwiftUI views care about (alert bindings, surfaced errors). All SDK
 /// interaction goes through ``GatewayController``.
 ///
-/// The single Start flow:
-/// 1. Configure the SDK via the controller (sdkKey only — API base URL
-///    is baked into the SDK at build time).
-/// 2. Hand off to ``GatewayPermissions/request(presentingAlwaysExplainer:_:_:_:)``
-///    for the BT → WhenInUse → Always escalation. The explainer closure
+/// The single Start flow (permissions FIRST — the SDK never presents a
+/// system prompt on its own):
+/// 1. Hand off to ``GatewayPermissions/request(...)`` for the
+///    BT → WhenInUse → Always → Motion escalation. The explainer closure
 ///    flips `showAlwaysExplainerAlert` so RootView's `.alert(...)` can
 ///    present the in-app rationale, and waits for the user to dismiss it.
-/// 3. Once permissions are usable, kick off `startScanning()`.
+/// 2. Configure the SDK via the controller (sdkKey only — API base URL
+///    is baked into the SDK at build time). No prompts fire here.
+/// 3. Call `startScanning()` and map the returned ``ScanStartResult``
+///    onto the `startBlocker` UI when something is missing.
 @MainActor
 @Observable
 final class AppModel {
@@ -44,6 +46,18 @@ final class AppModel {
         controller.refresh()
         if controller.isScanning { return }
 
+        // 1. Permissions first — the SDK never prompts on its own, so
+        // the host drives BT (no-op if already authorized) → WhenInUse →
+        // Always → Motion here. Our explainer closure presents the
+        // SwiftUI alert and waits for the user to tap one of the buttons.
+        _ = await GatewayPermissions.request(
+            presentingAlwaysExplainer: { [weak self] in
+                await self?.presentAlwaysExplainerAndAwait() ?? false
+            }
+        )
+
+        // 2. Bring the SDK up. No permission prompt can fire here — the
+        // SDK only consumes whatever was granted above.
         do {
             try controller.configure(HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey))
             lastError = nil
@@ -52,28 +66,41 @@ final class AppModel {
             return
         }
 
-        // Wait for the SDK's CBCentralManager to report adapter state.
-        // The system BT permission prompt fires during this window.
+        // 3. Start scanning; the result reports exactly what's missing,
+        // so the UI doesn't need to re-derive it from PermissionStatus.
+        let result = controller.startScanning()
+        guard result.didStart else {
+            startBlocker = Self.blockerMessage(for: result)
+            return
+        }
+        if !result.isBackgroundCapable {
+            startBlocker = "Scanning started, but Location is not set to \"Always\" — it will stop when the app goes to the background. Grant Always in Settings → HubbleGatewaySample → Location."
+        }
+
+        // 4. Radio check, distinct from permissions: the adapter may
+        // simply be switched off. The SDK joins the scan automatically
+        // when it powers back on; this is purely a UI hint.
         if await controller.waitForBluetoothPoweredOn() == false {
-            startBlocker = "Bluetooth is turned off. Turn it on in Control Center or Settings, then tap Start again."
-            return
+            startBlocker = "Bluetooth is turned off. Turn it on in Control Center or Settings — scanning resumes automatically."
         }
+    }
 
-        // Drives BT (no-op if already authorized) → WhenInUse → Always.
-        // Our explainer closure presents the SwiftUI alert and waits for
-        // the user to tap one of the buttons.
-        let status = await GatewayPermissions.request(
-            presentingAlwaysExplainer: { [weak self] in
-                await self?.presentAlwaysExplainerAndAwait() ?? false
+    private static func blockerMessage(for result: ScanStartResult) -> String {
+        switch result.failureReason {
+        case .missingPermissions:
+            let names = result.missingPermissions.map { kind -> String in
+                switch kind {
+                case .bluetooth: return "Bluetooth"
+                case .locationWhenInUse, .locationAlways: return "Location"
+                case .motion: return "Motion"
+                }
             }
-        )
-
-        guard status.location != .denied, status.location != .restricted else {
-            startBlocker = "Location access is denied. Grant it in Settings → HubbleGatewaySample → Location, then tap Start again."
-            return
+            return "Missing permissions: \(names.joined(separator: ", ")). Grant them in Settings → HubbleGatewaySample, then tap Start again."
+        case .dataCollectionDisabled:
+            return "Data collection is disabled. Re-enable it to start scanning."
+        case .notReady, .none:
+            return "The SDK is not ready. Check the configuration and try again."
         }
-
-        controller.startScanning()
     }
 
     /// Sets `showAlwaysExplainerAlert = true` and suspends until the

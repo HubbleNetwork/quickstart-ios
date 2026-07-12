@@ -20,6 +20,9 @@ struct HubbleGatewaySampleApp: App {
         // iOS relaunches the app in the background (BGTask fire, BLE
         // restoration) and scanning was active before the kill, the SDK
         // auto-runs start(config:) + startScanning() from this closure.
+        // No permission prompt can fire from this path — permissions are
+        // always already determined on a background relaunch, and the SDK
+        // never presents prompts itself (see AppModel.runStart()).
         HubbleGatewaySDK.registerBackgroundTasks {
             HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey)
         }
