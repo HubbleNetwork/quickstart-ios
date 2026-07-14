@@ -3,7 +3,7 @@ import Observation
 import HubbleGatewaySDK
 import UIKit
 
-/// Reference integration of `HubbleGatewaySDK` for SwiftUI hosts. Copy this
+/// Reference integration of `HubbleGateway` for SwiftUI hosts. Copy this
 /// file into your own app — it has no sample-app-specific concerns:
 ///
 /// - Mirrors every SDK state field as `@Observable` properties so SwiftUI
@@ -63,8 +63,8 @@ final class GatewayController {
     /// bridge. Subsequent calls (after the first) are no-ops on the SDK
     /// side — re-attaching the bridge is idempotent.
     func configure(_ config: HubbleGatewayConfig) throws {
-        if HubbleGatewaySDK.shared.initializationState != .ready {
-            try HubbleGatewaySDK.shared.start(config: config)
+        if HubbleGateway.shared.initializationState != .ready {
+            try HubbleGateway.shared.start(config: config)
         }
         attachScanCollector()
         refresh()
@@ -74,27 +74,27 @@ final class GatewayController {
     /// missing permissions — the SDK reports them instead of prompting.
     @discardableResult
     func startScanning() -> ScanStartResult {
-        let result = HubbleGatewaySDK.shared.startScanning()
+        let result = HubbleGateway.shared.startScanning()
         refresh()
         return result
     }
 
     func stopScanning() {
-        HubbleGatewaySDK.shared.stopScanning()
+        HubbleGateway.shared.stopScanning()
         refresh()
     }
 
     func setActiveScanning(_ enabled: Bool) {
         if enabled {
-            HubbleGatewaySDK.shared.startActiveScanning()
+            HubbleGateway.shared.startActiveScanning()
         } else {
-            HubbleGatewaySDK.shared.stopActiveScanning()
+            HubbleGateway.shared.stopActiveScanning()
         }
         refresh()
     }
 
     func deleteAll() {
-        HubbleGatewaySDK.shared.deleteAllData()
+        HubbleGateway.shared.deleteAllData()
         deviceIndex = [:]
         discoveredDevices = []
         refresh()
@@ -110,7 +110,7 @@ final class GatewayController {
     }
 
     func registerNow() async throws {
-        try await HubbleGatewaySDK.shared.registerIfNeeded()
+        try await HubbleGateway.shared.registerIfNeeded()
         refresh()
     }
 
@@ -118,15 +118,15 @@ final class GatewayController {
     /// Cheap — no I/O, just property reads.
     func refresh() {
         permissions = GatewayPermissions.currentStatus()
-        initializationState = HubbleGatewaySDK.shared.initializationState
-        isScanning = HubbleGatewaySDK.shared.isScanning
-        isActiveScanning = HubbleGatewaySDK.shared.isActiveScanningOverride
-        gatewayId = HubbleGatewaySDK.shared.gatewayId
-        lastLocation = HubbleGatewaySDK.shared.lastLocation
-        isBluetoothPoweredOn = HubbleGatewaySDK.shared.isBluetoothPoweredOn
+        initializationState = HubbleGateway.shared.initializationState
+        isScanning = HubbleGateway.shared.isScanning
+        isActiveScanning = HubbleGateway.shared.isActiveScanningOverride
+        gatewayId = HubbleGateway.shared.gatewayId
+        lastLocation = HubbleGateway.shared.lastLocation
+        isBluetoothPoweredOn = HubbleGateway.shared.isBluetoothPoweredOn
 
         Task {
-            if let snap = try? await HubbleGatewaySDK.shared.uploadDiagnostics() {
+            if let snap = try? await HubbleGateway.shared.uploadDiagnostics() {
                 lastDiagnostics = snap
             }
         }
@@ -143,10 +143,10 @@ final class GatewayController {
         let stepMs: UInt64 = 100
         let maxIterations = Int(timeout * 1000) / Int(stepMs)
         for _ in 0..<maxIterations {
-            if HubbleGatewaySDK.shared.isBluetoothPoweredOn { return true }
+            if HubbleGateway.shared.isBluetoothPoweredOn { return true }
             try? await Task.sleep(nanoseconds: stepMs * 1_000_000)
         }
-        return HubbleGatewaySDK.shared.isBluetoothPoweredOn
+        return HubbleGateway.shared.isBluetoothPoweredOn
     }
 
     // MARK: - Async scan feed
@@ -188,7 +188,7 @@ final class GatewayController {
         } onDiagnostics: { [weak self] diagnostics in
             Task { @MainActor in self?.lastDiagnostics = diagnostics }
         }
-        HubbleGatewaySDK.shared.addScanListener(collector)
+        HubbleGateway.shared.addScanListener(collector)
         scanCollector = collector
     }
 

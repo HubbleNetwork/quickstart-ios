@@ -9,7 +9,7 @@ struct HubbleGatewaySampleApp: App {
         // *before* `registerBackgroundTasks()` raises an NSException on a
         // misconfigured host. The check is a pure Bundle read — cheap.
         #if DEBUG
-        let check = HubbleGatewaySDK.validateIntegration()
+        let check = HubbleGateway.validateIntegration()
         if !check.isValid {
             assertionFailure(check.description)
         }
@@ -23,7 +23,7 @@ struct HubbleGatewaySampleApp: App {
         // No permission prompt can fire from this path — permissions are
         // always already determined on a background relaunch, and the SDK
         // never presents prompts itself (see AppModel.runStart()).
-        HubbleGatewaySDK.registerBackgroundTasks {
+        HubbleGateway.registerBackgroundTasks {
             HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey)
         }
     }

@@ -150,8 +150,8 @@ UI — you're expected to add that to your own settings screen. The
 underlying SDK calls are:
 
 ```swift
-HubbleGatewaySDK.shared.setDataCollectionEnabled(false)  // opt out (persisted)
-HubbleGatewaySDK.shared.deleteAllData()                  // GDPR erasure
+HubbleGateway.shared.setDataCollectionEnabled(false)  // opt out (persisted)
+HubbleGateway.shared.deleteAllData()                  // GDPR erasure
 ```
 
 The bottom red **Delete all data** button in `RootView` calls
