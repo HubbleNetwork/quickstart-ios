@@ -73,15 +73,23 @@ final class AppModel {
             startBlocker = Self.blockerMessage(for: result)
             return
         }
+
+        // Collect warnings instead of assigning startBlocker directly:
+        // both can apply at once (no Always + radio off), and the radio
+        // check must not hide the background-capability warning.
+        var warnings: [String] = []
         if !result.isBackgroundCapable {
-            startBlocker = "Scanning started, but Location is not set to \"Always\" — it will stop when the app goes to the background. Grant Always in Settings → HubbleGatewaySample → Location."
+            warnings.append("Scanning started, but Location is not set to \"Always\" — it will stop when the app goes to the background. Grant Always in Settings → HubbleGatewaySample → Location.")
         }
 
         // 4. Radio check, distinct from permissions: the adapter may
         // simply be switched off. The SDK joins the scan automatically
         // when it powers back on; this is purely a UI hint.
         if await controller.waitForBluetoothPoweredOn() == false {
-            startBlocker = "Bluetooth is turned off. Turn it on in Control Center or Settings — scanning resumes automatically."
+            warnings.append("Bluetooth is turned off. Turn it on in Control Center or Settings — scanning resumes automatically.")
+        }
+        if !warnings.isEmpty {
+            startBlocker = warnings.joined(separator: "\n\n")
         }
     }
 
