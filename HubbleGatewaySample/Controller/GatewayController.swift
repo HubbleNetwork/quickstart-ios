@@ -12,7 +12,8 @@ import UIKit
 ///   permission flips made in Settings surface without the user reopening
 ///   the app.
 /// - Bridges ``ScanListener`` callbacks onto the `@MainActor` and maintains
-///   a deduped ``DiscoveredDevice`` list keyed on peripheral identifier.
+///   a deduped ``DiscoveredDevice`` list keyed on `serviceData` (the
+///   peripheral identifier rotates with the beacon's advertised address).
 ///
 /// Anything UI-flow related (alerts, blocker text, text-field state) lives
 /// in ``AppModel`` next door — keep that boundary when adopting.
@@ -34,7 +35,7 @@ final class GatewayController {
     // MARK: - Derived state
 
     private(set) var discoveredDevices: [DiscoveredDevice] = []
-    private var deviceIndex: [UUID: DiscoveredDevice] = [:]
+    private var deviceIndex: [Data: DiscoveredDevice] = [:]
 
     // MARK: - Internals
 
@@ -200,19 +201,21 @@ final class GatewayController {
             continuation.yield(result)
         }
 
-        let id = result.peripheralIdentifier
-        if var existing = deviceIndex[id] {
+        // Key on serviceData: peripheralIdentifier rotates with the
+        // beacon's advertised address, so it can't identify a device.
+        let key = result.serviceData
+        if var existing = deviceIndex[key] {
             existing.lastRSSI = result.rssi
             existing.lastSeen = result.timestamp
             existing.sightingCount += 1
             existing.lastServiceUUID = result.serviceUUID.uuidString
-            existing.lastServiceDataBytes = result.serviceData.count
-            deviceIndex[id] = existing
+            existing.lastPeripheralId = result.peripheralIdentifier
+            deviceIndex[key] = existing
         } else {
-            deviceIndex[id] = DiscoveredDevice(
-                peripheralId: id,
+            deviceIndex[key] = DiscoveredDevice(
+                serviceData: key,
+                lastPeripheralId: result.peripheralIdentifier,
                 lastServiceUUID: result.serviceUUID.uuidString,
-                lastServiceDataBytes: result.serviceData.count,
                 lastRSSI: result.rssi,
                 firstSeen: result.timestamp,
                 lastSeen: result.timestamp,

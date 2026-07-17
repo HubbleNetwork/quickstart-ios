@@ -2,7 +2,8 @@ import SwiftUI
 import HubbleGatewaySDK
 
 /// Live list of BLE peripherals the SDK has surfaced via `ScanListener`.
-/// One row per peripheral; updated on every sighting (rolling RSSI,
+/// One row per device (keyed on `serviceData` — the peripheral
+/// identifier rotates); updated on every sighting (rolling RSSI,
 /// last seen). The "Clear list" button empties the local list only —
 /// the SDK's persistent scan buffer is untouched, and the next sighting
 /// repopulates the list.
@@ -31,7 +32,7 @@ private struct DeviceRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(device.peripheralId.uuidString)
+            Text(device.serviceData.map { String(format: "%02X", $0) }.joined())
                 .font(.system(.footnote, design: .monospaced))
                 .lineLimit(2)
                 .truncationMode(.middle)
@@ -42,7 +43,7 @@ private struct DeviceRow: View {
 
             HStack(spacing: 12) {
                 Label(device.lastServiceUUID, systemImage: "antenna.radiowaves.left.and.right")
-                Text("\(device.lastServiceDataBytes) B")
+                Text("\(device.serviceData.count) B")
             }
             .font(.footnote)
             .foregroundStyle(.secondary)
