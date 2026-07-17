@@ -87,8 +87,10 @@ Then in Xcode:
    1. Request Bluetooth authorization (system prompt).
    2. Request Location `WhenInUse` (system prompt).
    3. Present an in-app alert explaining why the SDK needs `Always`;
-      tapping **Open Settings** opens iOS Settings for this app so you
-      can escalate.
+      tapping **Continue** fires the system "Change to Always Allow"
+      prompt in-app. (iOS shows that upgrade prompt only once per
+      install — after it's consumed, the alert offers **Open Settings**
+      instead.)
    4. Request Motion & Fitness (system prompt; optional — denying it
       just degrades motion detection to a location-speed heuristic).
    5. Start the SDK and call `startScanning()` — the returned

@@ -65,13 +65,19 @@ struct RootView: View {
                 "Allow background access",
                 isPresented: $model.showAlwaysExplainerAlert,
                 actions: {
-                    Button("Open Settings") { model.resolveAlwaysExplainer(openSettings: true) }
+                    Button(model.alwaysEscalationNeedsSettings ? "Open Settings" : "Continue") {
+                        model.resolveAlwaysExplainer(escalate: true)
+                    }
                     Button("Not now", role: .cancel) {
-                        model.resolveAlwaysExplainer(openSettings: false)
+                        model.resolveAlwaysExplainer(escalate: false)
                     }
                 },
                 message: {
-                    Text("The gateway relays Bluetooth beacons even when the app is in the background or your screen is locked. iOS needs Location set to “Always” for that to work. Tap Open Settings → Location → Always.")
+                    Text(
+                        model.alwaysEscalationNeedsSettings
+                        ? "The gateway relays Bluetooth beacons even when the app is in the background or your screen is locked. iOS needs Location set to “Always” for that to work. Tap Open Settings → Location → Always."
+                        : "The gateway relays Bluetooth beacons even when the app is in the background or your screen is locked. iOS needs Location set to “Always” for that to work. Tap Continue, then choose “Change to Always Allow” on the system prompt."
+                    )
                 }
             )
             .alert(

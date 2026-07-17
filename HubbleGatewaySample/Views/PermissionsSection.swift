@@ -27,7 +27,7 @@ struct PermissionsSection: View {
         )
 
         if !permissions.isReadyForBackground {
-            Text("Background gateway scanning needs `Location: Always`. iOS requires you to first allow `When in Use`, then escalate to `Always` via Settings.")
+            Text("Background gateway scanning needs `Location: Always`. After `When in Use` is granted, iOS shows a one-time in-app prompt to upgrade to `Always`; if that prompt was already declined, the only remaining path is Settings.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

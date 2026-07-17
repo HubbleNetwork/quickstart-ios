@@ -13,6 +13,9 @@ import UIKit
 ///    BT → WhenInUse → Always → Motion escalation. The explainer closure
 ///    flips `showAlwaysExplainerAlert` so RootView's `.alert(...)` can
 ///    present the in-app rationale, and waits for the user to dismiss it.
+///    On accept, the SDK escalates via the in-app "Change to Always
+///    Allow" system prompt; it opens Settings only when that one-shot
+///    prompt was already consumed.
 /// 2. Configure the SDK via the controller (sdkKey only — API base URL
 ///    is baked into the SDK at build time). No prompts fire here.
 /// 3. Call `startScanning()` and map the returned ``ScanStartResult``
@@ -86,7 +89,14 @@ final class AppModel {
         // check must not hide the background-capability warning.
         var warnings: [String] = []
         if !result.isBackgroundCapable {
-            warnings.append("Scanning started, but Location is not set to \"Always\" — it will stop when the app goes to the background. Grant Always in Settings → HubbleGatewaySample → Location.")
+            // Two different remedies: the one-shot system prompt is still
+            // available (user dismissed our explainer — Start again re-runs
+            // it), or it was consumed and only Settings can escalate.
+            if GatewayPermissions.isLocationAlwaysPromptAvailable {
+                warnings.append("Scanning started, but Location is not set to \"Always\" — it will stop when the app goes to the background. Tap Start again and choose \"Change to Always Allow\" when iOS asks.")
+            } else {
+                warnings.append("Scanning started, but Location is not set to \"Always\" — it will stop when the app goes to the background. Grant Always in Settings → HubbleGatewaySample → Location.")
+            }
         }
 
         // 4. Radio check, distinct from permissions: the adapter may
@@ -118,9 +128,16 @@ final class AppModel {
         }
     }
 
+    /// Whether accepting the Always explainer sends the user to Settings
+    /// (the one-shot "Change to Always Allow" prompt was already consumed)
+    /// instead of the in-app system prompt. Drives the alert copy.
+    var alwaysEscalationNeedsSettings: Bool {
+        !GatewayPermissions.isLocationAlwaysPromptAvailable
+    }
+
     /// Sets `showAlwaysExplainerAlert = true` and suspends until the
     /// alert dismissal handler resumes the continuation with the user's
-    /// choice (true = open Settings, false = not now).
+    /// choice (true = escalate to Always, false = not now).
     private func presentAlwaysExplainerAndAwait() async -> Bool {
         await withCheckedContinuation { (cont: CheckedContinuation<Bool, Never>) in
             alwaysExplainerContinuation = cont
@@ -129,11 +146,11 @@ final class AppModel {
     }
 
     /// Called from RootView's alert buttons.
-    func resolveAlwaysExplainer(openSettings: Bool) {
+    func resolveAlwaysExplainer(escalate: Bool) {
         showAlwaysExplainerAlert = false
         let cont = alwaysExplainerContinuation
         alwaysExplainerContinuation = nil
-        cont?.resume(returning: openSettings)
+        cont?.resume(returning: escalate)
     }
 
     func stop() {
