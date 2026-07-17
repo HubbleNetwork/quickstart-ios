@@ -44,7 +44,14 @@ final class AppModel {
 
     private func runStart() async {
         controller.refresh()
-        if controller.isScanning { return }
+        if controller.isScanning {
+            // The SDK auto-resumed scanning on relaunch (configProvider in
+            // registerBackgroundTasks), so the scan-listener bridge was
+            // never attached — configure() is idempotent and only re-attaches
+            // the collector here, so the device list fills up again.
+            try? controller.configure(HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey))
+            return
+        }
 
         // 1. Permissions first — the SDK never prompts on its own, so
         // the host drives BT (no-op if already authorized) → WhenInUse →
@@ -163,5 +170,11 @@ final class AppModel {
 
     func onSceneBecameActive() {
         controller.refresh()
+        // If the SDK auto-resumed scanning on relaunch, the scan-listener
+        // bridge isn't attached yet — without it the device list stays
+        // empty even though ingests are flowing. configure() is idempotent.
+        if controller.initializationState == .ready {
+            try? controller.configure(HubbleGatewayConfig(sdkKey: DefaultConfig.sdkKey))
+        }
     }
 }
