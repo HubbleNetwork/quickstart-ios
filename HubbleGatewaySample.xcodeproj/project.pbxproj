@@ -21,6 +21,7 @@
 		BB1100000000000000000012 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000012 /* LocationSection.swift */; };
 		BB1100000000000000000013 /* GatewayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000013 /* GatewayController.swift */; };
 		BB1100000000000000000020 /* DiscoveredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000020 /* DiscoveredDevice.swift */; };
+		BB1100000000000000000022 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA1100000000000000000022 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		AA1100000000000000000012 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
 		AA1100000000000000000013 /* GatewayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayController.swift; sourceTree = "<group>"; };
 		AA1100000000000000000020 /* DiscoveredDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDevice.swift; sourceTree = "<group>"; };
+		AA1100000000000000000022 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				CC1100000000000000000012 /* Views */,
 				AA1100000000000000000009 /* Info.plist */,
 				AA110000000000000000000A /* Assets.xcassets */,
+				AA1100000000000000000022 /* LaunchScreen.storyboard */,
 			);
 			path = HubbleGatewaySample;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB110000000000000000000A /* Assets.xcassets in Resources */,
+				BB1100000000000000000022 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
