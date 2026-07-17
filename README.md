@@ -1,10 +1,34 @@
 # Hubble Gateway SDK - iOS Quickstart
 
-Reference iOS app that consumes [`gateway-sdk`](../gateway-sdk). Demonstrates
+This is a **sample app** demonstrating how to integrate the
+[HubbleGatewaySDK for iOS](https://github.com/HubbleNetwork/gateway-sdk-ios-releases)
+— it is not itself a production app, just a reference. Demonstrates
 the end-to-end integration path — permission flow, background-task
 registration, SDK lifecycle, live BLE device feed, upload diagnostics —
 and ships a copy-pasteable `GatewayController` you can lift straight
 into your own app.
+
+Looking for the Android equivalent? See
+[quickstart-android](https://github.com/HubbleNetwork/quickstart-android).
+
+For general Hubble Network documentation (not iOS/Android-SDK-specific),
+see [docs.hubble.com](https://docs.hubble.com).
+
+### The Hubble service UUID
+
+`0xFCA6` is the short form of Hubble Network's Bluetooth-SIG-assigned
+16-bit service UUID. In full 128-bit form it's:
+
+```
+0000FCA6-0000-1000-8000-00805F9B34FB
+```
+
+It's listed in the official [Bluetooth SIG 16-bit UUID assigned numbers
+register](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Assigned_Numbers/out/en/Assigned_Numbers.pdf)
+(page 119).
+
+The SDK also scans for Tile's service UUID (`0xFEED`) by default, for
+interoperability with the Tile network.
 
 ## Requirements
 
