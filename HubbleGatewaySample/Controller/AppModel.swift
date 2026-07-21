@@ -118,6 +118,7 @@ final class AppModel {
                 case .bluetooth: return "Bluetooth"
                 case .locationWhenInUse, .locationAlways: return "Location"
                 case .motion: return "Motion"
+                @unknown default: return "Unknown"
                 }
             }
             return "Missing permissions: \(names.joined(separator: ", ")). Grant them in Settings → HubbleGatewaySample, then tap Start again."
@@ -125,6 +126,8 @@ final class AppModel {
             return "Data collection is disabled. Re-enable it to start scanning."
         case .notReady, .none:
             return "The SDK is not ready. Check the configuration and try again."
+        @unknown default:
+            return "Scanning could not start. Check the configuration and try again."
         }
     }
 

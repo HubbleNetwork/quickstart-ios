@@ -97,6 +97,7 @@ struct GatewaySection: View {
         case .initializing: return .neutral
         case .notStarted: return .neutral
         case .failed: return .warn
+        @unknown default: return .neutral
         }
     }
 }

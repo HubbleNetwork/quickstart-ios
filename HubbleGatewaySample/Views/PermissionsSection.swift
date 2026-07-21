@@ -44,6 +44,7 @@ struct PermissionsSection: View {
         case .authorized: return .ok
         case .notDetermined: return .neutral
         case .denied, .restricted, .unknown: return .warn
+        @unknown default: return .neutral
         }
     }
 
@@ -53,6 +54,7 @@ struct PermissionsSection: View {
         case .authorizedWhenInUse: return .warn
         case .notDetermined: return .neutral
         case .denied, .restricted: return .warn
+        @unknown default: return .neutral
         }
     }
 
@@ -61,6 +63,7 @@ struct PermissionsSection: View {
         case .authorized: return .ok
         case .notDetermined: return .neutral
         case .denied, .restricted: return .warn
+        @unknown default: return .neutral
         }
     }
 }
