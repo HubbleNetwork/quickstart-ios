@@ -10,7 +10,7 @@ Please include:
 
 - A description of the vulnerability
 - Steps to reproduce
-- The affected version (e.g. `0.2.1`)
+- The affected version (e.g. `0.2.2`)
 - Any potential impact
 
 We'll acknowledge your report within 2 business days and aim to provide a status update within 7 days.

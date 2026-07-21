@@ -167,7 +167,7 @@
 			);
 			mainGroup = CC1100000000000000000001;
 			packageReferences = (
-				3333000000000000000000A0 /* XCLocalSwiftPackageReference "../gateway-sdk" */,
+				3333000000000000000000A0 /* XCRemoteSwiftPackageReference "gateway-sdk-ios-releases" */,
 			);
 			productRefGroup = CC1100000000000000000003 /* Products */;
 			projectDirPath = "";
@@ -337,7 +337,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = SBY4TF74S2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = HubbleGatewaySample/Info.plist;
@@ -364,7 +364,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = SBY4TF74S2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = HubbleGatewaySample/Info.plist;
@@ -407,16 +407,21 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		3333000000000000000000A0 /* XCLocalSwiftPackageReference "../gateway-sdk" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../gateway-sdk";
+/* Begin XCRemoteSwiftPackageReference section */
+		3333000000000000000000A0 /* XCRemoteSwiftPackageReference "gateway-sdk-ios-releases" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HubbleNetwork/gateway-sdk-ios-releases.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		3333000000000000000000A1 /* HubbleGatewaySDK */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 3333000000000000000000A0 /* XCRemoteSwiftPackageReference "gateway-sdk-ios-releases" */;
 			productName = HubbleGatewaySDK;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -18,7 +18,7 @@ Open a [GitHub issue](https://github.com/HubbleNetwork/quickstart-ios/issues) wi
 - What you expected to happen
 - What actually happened
 - Steps to reproduce
-- Your device, iOS version, and SDK version (e.g. `gateway-sdk 0.3.0`)
+- Your device, iOS version, and SDK version (e.g. `gateway-sdk 0.6.0`)
 - Relevant logs (with sensitive info redacted)
 
 For security vulnerabilities, see [SECURITY.md](SECURITY.md).

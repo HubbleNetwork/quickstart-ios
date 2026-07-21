@@ -44,6 +44,14 @@ requires that bump — your own host app can stay on iOS 16.
 
 ## Setup
 
+### Getting an SDK key
+
+SDK keys (`hsk_...`) are currently issued manually — contact Hubble
+support to have one generated for your organization. See
+[docs.hubble.com](https://docs.hubble.com) for contact details.
+
+### Configuring the key
+
 The sample injects the Hubble SDK key via an xcconfig file that is
 **not committed**. Before your first build:
 
@@ -100,9 +108,10 @@ Then in Xcode:
    6. Wait for the BLE adapter to power on (a radio-off hint, distinct
       from permissions).
 
-The local `HubbleGatewaySDK` SwiftPM package is referenced at
-`../gateway-sdk`, so any SDK edit is picked up by the next sample
-build without republishing.
+The `HubbleGatewaySDK` SwiftPM package is resolved from the public
+[gateway-sdk-ios-releases](https://github.com/HubbleNetwork/gateway-sdk-ios-releases)
+repository (`from: "0.6.0"`), so the project builds standalone —
+just clone, add your SDK key, and run.
 
 ## What it demonstrates
 

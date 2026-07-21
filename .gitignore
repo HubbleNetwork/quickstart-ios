@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Claude Code local state
+.claude/
+
 # Secrets — never commit
 Secrets.xcconfig
 *.xcconfig.local

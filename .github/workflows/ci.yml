@@ -1,0 +1,29 @@
+name: CI
+
+# Build-only check for pull requests and pushes to main.
+# Runs on the plain `pull_request` trigger with no secrets, so it is safe
+# for fork PRs on a public repo.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Create placeholder Secrets.xcconfig
+        # The placeholder key is enough to build; it only fails at runtime.
+        run: cp Secrets.template.xcconfig Secrets.xcconfig
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -project HubbleGatewaySample.xcodeproj \
+            -scheme HubbleGatewaySample \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            -quiet
