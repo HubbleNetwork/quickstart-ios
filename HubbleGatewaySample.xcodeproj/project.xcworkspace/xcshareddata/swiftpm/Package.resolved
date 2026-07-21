@@ -1,0 +1,15 @@
+{
+  "originHash" : "08c940aa1e4c9b5f653ad1c60eca8c322bae69809e0b023eb653d7429f727a72",
+  "pins" : [
+    {
+      "identity" : "gateway-sdk-ios-releases",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HubbleNetwork/gateway-sdk-ios-releases.git",
+      "state" : {
+        "revision" : "85aafec010a1a140dfc74373879a457ddf4f0076",
+        "version" : "0.6.1"
+      }
+    }
+  ],
+  "version" : 3
+}
