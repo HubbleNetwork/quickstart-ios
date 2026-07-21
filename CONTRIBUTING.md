@@ -39,4 +39,4 @@ The Hubble Gateway SDK itself is a separate, commercial product maintained in [`
 
 ## License
 
-By contributing, you agree that your contributions will be governed by the same terms as this project — see [LICENSE](LICENSE).
+By contributing, you agree that your contributions will be licensed under the [Apache License 2.0](LICENSE), the same license that covers this project.

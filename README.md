@@ -195,4 +195,8 @@ DB clear itself in the diagnostics counters.
 
 ## License
 
-Proprietary — Hubble Network, Inc.
+[Apache License 2.0](LICENSE) — Copyright 2026 Hubble Network, Inc.
+
+The license covers this sample app's source code. The Hubble Gateway
+SDK itself and its service are licensed separately — using them in
+production requires an SDK key issued by Hubble Network.
