@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/HubbleNetwork/gateway-sdk-ios-releases.git",
       "state" : {
-        "revision" : "85aafec010a1a140dfc74373879a457ddf4f0076",
-        "version" : "0.6.1"
+        "revision" : "fc5a1c7ad2b4ebad0ca2c8dd5ae6f32b799a408b",
+        "version" : "0.6.3"
       }
     }
   ],
