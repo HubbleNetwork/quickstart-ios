@@ -46,9 +46,13 @@ requires that bump — your own host app can stay on iOS 16.
 
 ### Getting an SDK key
 
-SDK keys (`hsk_...`) are currently issued manually — contact Hubble
-support to have one generated for your organization. See
-[docs.hubble.com](https://docs.hubble.com) for contact details.
+SDK keys (`hsk_...`) are currently issued manually. To obtain one:
+
+1. You must have a Hubble account — sign up at
+   [docs.hubble.com](https://docs.hubble.com) if you don't have one yet.
+2. Contact us via [support@hubble.com](mailto:support@hubble.com) to
+   discuss your intended gateway deployment use case. We'll generate a
+   key for your organization.
 
 ### Configuring the key
 
