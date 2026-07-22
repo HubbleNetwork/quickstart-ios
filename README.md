@@ -182,6 +182,16 @@ the sample's UI-flow orchestration (alert bindings, error surfacing,
 the SwiftUI-alert-as-continuation trick for the Always explainer).
 Your app will have its own equivalent.
 
+### Integrating with an AI coding assistant
+
+The SDK repo ships an agent skill (`skills/hubble-gateway-ios/` in
+[gateway-sdk-ios-releases](https://github.com/HubbleNetwork/gateway-sdk-ios-releases))
+that teaches Claude Code and similar assistants the SDK's real API,
+project setup, and troubleshooting — including how to wire up
+`GatewayController`. The SDK isn't in model training data, so install
+the skill before asking an assistant to do the integration; see the
+SDK README's "AI-assisted integration" section for instructions.
+
 ## Privacy & data collection
 
 The sample doesn't surface the data-collection opt-out toggle in the
