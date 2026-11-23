@@ -20,6 +20,14 @@ struct RootView: View {
                     DiagnosticsSection(diagnostics: model.controller.lastDiagnostics)
                 }
 
+                Section {
+                    BacklogDrainSection()
+                } header: {
+                    Text("Backlog drain (iOS 26+)")
+                } footer: {
+                    Text("Asks iOS for extra time to upload queued data right away (requestBacklogDrain). An error here means iOS rejected the request.")
+                }
+
                 Section("Location") {
                     LocationSection(
                         fix: model.controller.lastLocation,

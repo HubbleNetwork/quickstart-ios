@@ -114,7 +114,7 @@ Then in Xcode:
 
 The `HubbleGatewaySDK` SwiftPM package is resolved from the public
 [gateway-sdk-ios-releases](https://github.com/HubbleNetwork/gateway-sdk-ios-releases)
-repository (`from: "0.6.0"`), so the project builds standalone —
+repository (`from: "0.7.2"`), so the project builds standalone —
 just clone, add your SDK key, and run.
 
 ## What it demonstrates

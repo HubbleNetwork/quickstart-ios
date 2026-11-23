@@ -36,3 +36,59 @@ struct DiagnosticsSection: View {
         return timeFormatter.string(from: date)
     }
 }
+
+/// Demonstrates `HubbleGateway.requestBacklogDrain` — the user-initiated
+/// `BGContinuedProcessingTask` (iOS 26+). Shows the task identifier the SDK
+/// submits (it must be listed in `Info.plist`) and the outcome of the last
+/// attempt, so a rejected request is visible without a debugger.
+struct BacklogDrainSection: View {
+    @State private var outcome: Outcome?
+
+    private enum Outcome {
+        case submitted(Date)
+        case failed(String)
+    }
+
+    var body: some View {
+        LabeledContent("Task identifier") {
+            Text(GatewayBackgroundTaskIdentifiers.default.continued)
+                .font(.footnote.monospaced())
+                .multilineTextAlignment(.trailing)
+        }
+
+        if #available(iOS 26.0, *) {
+            Button("Drain backlog now") { submit() }
+        } else {
+            Text("Requires iOS 26 or later.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
+
+        switch outcome {
+        case .submitted(let date):
+            Text("Submitted at \(date.formatted(date: .omitted, time: .standard)) — iOS accepted the request.")
+                .font(.footnote)
+                .foregroundStyle(.green)
+        case .failed(let message):
+            Text(message)
+                .font(.footnote)
+                .foregroundStyle(.red)
+        case nil:
+            EmptyView()
+        }
+    }
+
+    @available(iOS 26.0, *)
+    private func submit() {
+        do {
+            try HubbleGateway.shared.requestBacklogDrain(
+                title: "Uploading gateway data",
+                subtitle: "Sending queued packets"
+            )
+            outcome = .submitted(Date())
+        } catch {
+            let nsError = error as NSError
+            outcome = .failed("Rejected: \(nsError.domain) code \(nsError.code) — \(nsError.localizedDescription)")
+        }
+    }
+}
