@@ -6,7 +6,7 @@
 	<array>
 		<string>com.hubble.gateway.refresh</string>
 		<string>com.hubble.gateway.processing</string>
-		<string>com.hubble.gateway.continued</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).hubble.gateway.continued</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
